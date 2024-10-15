@@ -7,4 +7,4 @@ edition = "2021"
 rand = "0.8.5"
 num-bigint = { version="*",features = ["rand"]}
 num-traits = "*"
-
+num-prime = "0.4.3"
