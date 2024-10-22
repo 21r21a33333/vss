@@ -4,6 +4,7 @@ use num_bigint::{BigUint, ToBigUint};
 use num_traits::One;
 
 /// Represents the public parameters for the Feldman VSS scheme.
+#[derive(Debug, Clone)]
 pub struct FeldmanVSSParams {
     pub g: BigUint, // Generator of the group G
     pub q: BigUint, // Prime order of the group G
@@ -24,13 +25,18 @@ impl FeldmanVSSParams {
 
         // Generate shares using the polynomial, similar to Shamir's scheme
         for i in 1..=num_shares {
-            let x = i.to_biguint().unwrap();
+            // let x = i.to_biguint().unwrap();
+            // let x = BigUint::from(rand::random::<u64>()); // Generate a random BigUint
+            let x = BigUint::from(rand::random::<u64>() % 100000 + 1); // Generate a random BigUint in the range of 1 to 1000
             let y = poly.evaluate(&x) % &self.q; // Ensure the evaluation is done modulo q
             shares.push((x, y));
         }
 
+        println!("Shares: {:?}", shares);
+
         // Generate commitments for the polynomial's coefficients for verifiability
         let commitments = self.generate_commitments(&poly);
+        println!("Commitments: {:?}", commitments);
 
         (shares, commitments)
     }
@@ -68,4 +74,5 @@ pub fn verify_share(
 pub fn reconstruct_secret(shares: &[(BigUint, BigUint)], modulus: &BigUint) -> Option<BigUint> {
     lagrange_interpolation_zero(shares, modulus)
 }
+
 
