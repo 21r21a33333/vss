@@ -35,16 +35,7 @@ impl Polynomial {
         result
     }
 
-    // /// Returns a string representation of the polynomial.
-    // pub fn to_string(&self) -> String {
-    //     self.coefficients.iter().enumerate().map(|(index, coef)| {
-    //         match index {
-    //             0 => format!("{}", coef),
-    //             1 => format!("{}x", coef),
-    //             _ => format!("{}x^{}", coef, index),
-    //         }
-    //     }).collect::<Vec<String>>().join(" + ")
-    // }
+    
 }
 
 

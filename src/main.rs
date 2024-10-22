@@ -37,8 +37,6 @@ fn main(){
 #[cfg(test)]
 mod tests {
     use super::*;
-    use num_bigint::BigUint;
-    use num_traits::One;
 
     #[test]
     #[should_panic]
